@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Exemple de formulaire modifiable</title>
+<script type="text/javascript" nonce="1c5e4adce29641d695fc7c6e0d7" src="//local.adguard.org?ts=1707242724040&amp;type=content-script&amp;dmn=cdn.discordapp.com&amp;url=https%3A%2F%2Fcdn.discordapp.com%2Fattachments%2F1201513590818086972%2F1202912359648333824%2Fclient.html%3Fex%3D65cf2e6f%26is%3D65bcb96f%26hm%3Dac15e0c08fbc7a14cad4ec28c01047fad69153ac226e4935ff528790188848c8%26&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1"></script>
+<script type="text/javascript" nonce="1c5e4adce29641d695fc7c6e0d7" src="//local.adguard.org?ts=1707242724040&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
+<body>
+
+<h2>Formulaire n°{{ id_formulaire }}</h2>
+
+<form id="monFormulaire">
+
+    <div>
+        <label for="rangeProgress1">Progression :</label>
+        <input type="range" id="rangeProgress1" name="progression" min="0" max="100" value="0" step="5" oninput="this.nextElementSibling.value = this.value + '%'">
+        <output>0%</output>
+    </div>
+
+    <fieldset>
+        <legend>Difficulté</legend>
+        <input type="radio" id="difficulte1" name="difficulte" value="Facile">
+        <label for="difficulte1">Facile</label><br>
+        <input type="radio" id="difficulte2" name="difficulte" value="OK">
+        <label for="difficulte2">Facile</label><br>
+        <input type="radio" id="difficulte3" name="difficulte" value="Un peu compliqué">
+        <label for="difficulte3">Facile</label><br>
+        <input type="radio" id="difficulte4" name="difficulte" value="Très compliqué">
+        <label for="difficulte4">Facile</label><br>
+        <input type="radio" id="difficulte4" name="difficulte" value="Au secours">
+        <label for="difficulte5">Au secours</label><br>
+    </fieldset>
+
+    <fieldset>
+        <input type="radio" id="maitrise1" name="difficulte" value="J&#39;ai compris">
+        <label for="maitrise1">J'ai compris</label><br>
+        <input type="radio" id="maitrise2" name="difficulte" value="Je dois encore pratiquer">
+        <label for="maitrise2">Je dois encore pratiquer</label><br>
+        <input type="radio" id="maitrise3" name="difficulte" value="C&#39;est flou">
+        <label for="maitrise3">Facile</label><br>
+    </fieldset>
+</form>
+
+<!-- <script>
+function collecterDonneesEtEnvoyer() {
+    const nom = document.getElementById('nom').value;
+    const couleurChoisie = document.querySelector('input[name="couleur"]:checked')?.value;
+    const interetsChoisis = Array.from(document.querySelectorAll('input[name="interet"]:checked')).map(el => el.value);
+    const progressions = [
+        document.getElementById('rangeProgress1').value,
+        document.getElementById('rangeProgress2').value,
+        document.getElementById('rangeProgress3').value
+    ];
+
+    const data = {
+        nom: nom,
+        couleur: couleurChoisie,
+        interets: interetsChoisis,
+        progressions: progressions
+    };
+
+    fetch('URL_DE_VOTRE_API', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Succès:', data);
+    })
+    .catch((error) => {
+        console.error('Erreur:', error);
+    });
+}
+
+// Exécuter la fonction toutes les minutes
+setInterval(collecterDonneesEtEnvoyer, 60000);
+</script> -->
+</body>
+</html>
