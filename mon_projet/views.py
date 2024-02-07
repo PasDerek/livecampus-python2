@@ -9,7 +9,6 @@ def list_forms_admin(request):
     return render(request, 'formulaires_list.html', {'formulaires': formulaires})
 
 def detail_forms_admin(request, id_formulaire):
-    formulaire = get_object_or_404(Formulaire, id_formulaire=id_formulaire)
     reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)
     total_reponses = reponses.count()
     moy_progression = reponses.aggregate(avg_progression=Avg('progression'))['avg_progression'] or 0
@@ -26,7 +25,6 @@ def detail_forms_admin(request, id_formulaire):
         print(f'{key} : {value}')
 
     return render(request, 'formulaires_details.html', {
-        'formulaire': formulaire,
         'reponses': reponses,
         'total_reponses': total_reponses,
         'moy_progression': moy_progression,
