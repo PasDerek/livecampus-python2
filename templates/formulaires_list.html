@@ -16,12 +16,13 @@
                     <span style="color: rgb(224, 42, 42);">Fermé</span>
                 {% endif %} - 
                 Date d'ouverture : {{ formulaire.date_ouverture }} - 
-                Date de fermeture : {{ formulaire.date_fermeture }}
+                Date de fermeture : {{ formulaire.date_fermeture }} - 
+                <a href="/admin/mon_projet/formulaire/{{ formulaire.id_formulaire }}/change/">Modifier</a>
             </li>
         {% endfor %}
     </ul>
 
-<a href="/admin/">Page admin</a>
+<a href="/admin/mon_projet/">Page admin</a>
 
 </body>
 </html>

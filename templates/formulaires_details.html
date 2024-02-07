@@ -30,7 +30,7 @@
     <h1>Détails des réponses</h1>
     {% for reponse in reponses %}
     <ul>
-        <li><strong>Etudiant:</strong> {{ reponse.etudiant.prenom }} {{ reponse.etudiant.nom }}</li>
+        <li><strong>Etudiant:</strong> {{ reponse.numero_etudiant.nom }} {{ reponse.numero_etudiant.prenom}}</li>
         <li><strong>Progression:</strong> {{ reponse.progression }}%</li>
         <li><strong>Difficulté:</strong> {{ reponse.difficulte }}</li>
         <li><strong>Maitrise:</strong> {{ reponse.maitrise }}</li>
@@ -38,5 +38,6 @@
     </ul>
     {% endfor %}
     <br/><a href="/formateur/">Retour</a>
+    <br/><a href="/admin/mon_projet/formulaire/{{ id_formulaire }}/change/">Modifier le formulaire</a>
 </body>
 </html>
