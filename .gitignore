@@ -1,0 +1,3 @@
+.venv/
+mon_projet/__pycache__/
+mon_projet/migrations/
