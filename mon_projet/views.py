@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.db.models import Avg
+from django.http import HttpResponse
 from collections import defaultdict
 from .models import Etudiant
 from .models import Formulaire
@@ -35,5 +36,7 @@ def detail_forms_admin(request, id_formulaire):
 
 def forms_etudiant(request, id_formulaire):
     formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
-    print(formulaire[0].ouvert)
-    return render(request, 'formulaires_etudiant.html', {'id_formulaire' : id_formulaire})
+    if formulaire[0].ouvert:
+        return render(request, 'formulaires_etudiant.html', {'id_formulaire' : id_formulaire})
+    else:
+        return HttpResponse('Formulaire <span style="color: rgb(224, 42, 42);">fermé</span>')
