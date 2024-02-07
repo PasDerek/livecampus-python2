@@ -1,0 +1,35 @@
+from django.db import models
+from django.utils import timezone
+
+class Etudiant(models.Model):
+    numero_etudiant = models.AutoField(primary_key=True)
+    username = models.CharField(max_length=50, unique=True, null=False)
+    nom = models.CharField(max_length=50, null=False)
+    prenom = models.CharField(max_length=50, null=False)
+    email = models.EmailField(max_length=100, null=False, unique=True)
+    password = models.CharField(max_length=100, null=False)
+
+class Formulaire(models.Model):
+    id_formulaire = models.AutoField(primary_key=True)
+    ouvert = models.BooleanField(default=True)
+    date_ouverture = models.DateTimeField(auto_now_add=True)
+    date_fermeture = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Formulaire'
+        verbose_name_plural = 'Formulaires'
+
+    def save(self, *args, **kwargs):
+        if self.ouvert:
+            self.date_ouverture = timezone.now()
+            self.date_fermeture = None
+        elif self.pk:
+            self.date_fermeture = timezone.now()
+        super().save(*args, **kwargs)
+
+class ReponsesFormulaire(models.Model):
+    id_formulaire = models.ForeignKey(Formulaire, on_delete=models.CASCADE)
+    numero_etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
+    progression = models.IntegerField()
+    difficulte = models.CharField(max_length=50)
+    maitrise = models.CharField(max_length=50)

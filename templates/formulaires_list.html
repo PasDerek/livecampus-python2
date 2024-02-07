@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des formulaires</title>
+</head>
+<body>
+    <h1>Liste des formulaires</h1>
+    <ul>
+        {% for formulaire in formulaires %}
+            <li><a href="/formateur/{{ formulaire.id_formulaire }}">Formulaire n°{{ formulaire.id_formulaire }}</a> - 
+                Status : 
+                {%if formulaire.ouvert %} 
+                    <span style="color: rgb(45, 238, 45);">Ouvert</span>
+                {% else %}
+                    <span style="color: rgb(224, 42, 42);">Fermé</span>
+                {% endif %} - 
+                Date d'ouverture : {{ formulaire.date_ouverture }} - 
+                Date de fermeture : {{ formulaire.date_fermeture }}
+            </li>
+        {% endfor %}
+    </ul>
+
+<a href="/admin/">Page admin</a>
+
+</body>
+</html>
