@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des formulaires</title>
+</head>
+<body>
+    <h1>Statistiques</h1>
+    <p><strong>Nombre total de réponses:</strong> {{ total_reponses }}</p>
+    <p><strong>Moyenne des progressions :</strong> {{ moy_progression }}%</p>
+    <p><strong>Difficultés:</strong></p>
+        <ul>
+            {% for key,value in count_difficulte %}
+                <li>{{ key }} : {{ value }}</li>
+            {% empty %}
+                <p>Aucune réponse.</p>
+            {% endfor %}
+        </ul>
+    <p><strong>Niveau de maitrise :</strong></p>
+        <ul>
+            {% for key,value in count_maitrise %}
+                <li>{{ key }} : {{ value }}</li>
+            {% empty %}
+                <p>Aucune réponse.</p>
+            {% endfor %}
+        </ul>
+    
+
+
+    <h1>Détails des réponses</h1>
+    {% for reponse in reponses %}
+    <ul>
+        <li><strong>Etudiant:</strong> {{ reponse.etudiant.prenom }} {{ reponse.etudiant.nom }}</li>
+        <li><strong>Progression:</strong> {{ reponse.progression }}%</li>
+        <li><strong>Difficulté:</strong> {{ reponse.difficulte }}</li>
+        <li><strong>Maitrise:</strong> {{ reponse.maitrise }}</li>
+        <br/>
+    </ul>
+    {% endfor %}
+    <br/><a href="/formateur/">Retour</a>
+</body>
+</html>

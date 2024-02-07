@@ -20,5 +20,6 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('formateur/', views.list_forms_admin)
+    path('formateur/', views.list_forms_admin),
+    path('formateur/<str:id_formulaire>/', views.detail_forms_admin),
 ]
