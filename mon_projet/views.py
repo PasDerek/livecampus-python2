@@ -32,3 +32,8 @@ def detail_forms_admin(request, id_formulaire):
         'count_difficulte' : count_difficulte.items(),
         'count_maitrise' : count_maitrise.items()
     })
+
+def forms_etudiant(request, id_formulaire):
+    formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
+    print(formulaire[0].ouvert)
+    return render(request, 'formulaires_etudiant.html', {'id_formulaire' : id_formulaire})
