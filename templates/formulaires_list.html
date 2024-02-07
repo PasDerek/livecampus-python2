@@ -17,6 +17,7 @@
                 {% endif %} - 
                 Date d'ouverture : {{ formulaire.date_ouverture }} - 
                 Date de fermeture : {{ formulaire.date_fermeture }} - 
+                URL : <a href="/etudiant/{{ formulaire.id_formulaire }}">http://127.0.0.1:8000/etudiant/{{ formulaire.id_formulaire }}</a> - 
                 <a href="/admin/mon_projet/formulaire/{{ formulaire.id_formulaire }}/change/">Modifier</a>
             </li>
         {% endfor %}
