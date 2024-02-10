@@ -51,9 +51,9 @@ def login_etudiant(request):
             try:
                 Etudiant.objects.get(username=username, password=password)
                 token = utility.generate_jwt(username)
-                response = HttpResponseRedirect('/login')
-                response.set_cookie('JWT', token)
-                return response
+                reponse = HttpResponseRedirect('/login')
+                reponse.set_cookie('JWT', token)
+                return reponse
             except Etudiant.DoesNotExist:
                 message = 'Utilisateur ou mot de passe incorrect !'
 
@@ -69,11 +69,12 @@ def forms_etudiant(request, id_formulaire):
         
         formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
         if formulaire[0].ouvert:
-            reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)
+            reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
+            print(reponse)
             return render(request, 'formulaires_etudiant.html', {
                 'id_formulaire' : id_formulaire,
-                'reponses': reponses})
+                'reponse': reponse})
         else:
             return HttpResponse('Formulaire <span style="color: rgb(224, 42, 42);">fermé</span>')
     else:
-        return HttpResponse('Merci de vous connecter')
+        return HttpResponseRedirect('/login/')
