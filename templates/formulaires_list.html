@@ -16,8 +16,8 @@
                 {% else %}
                     <span style="color: rgb(224, 42, 42);">Fermé</span>
                 {% endif %} - 
-                Date d'ouverture : {{ formulaire.date_ouverture }} - 
-                Date de fermeture : {{ formulaire.date_fermeture }} - 
+                Date d'ouverture : {{ formulaire.date_ouverture | date:"d/m/Y à H:i" }} - 
+                Date de fermeture : {{ formulaire.date_fermeture | date:"d/m/Y à H:i" }} - 
                 URL : <a href="/etudiant/{{ formulaire.id_formulaire }}">http://127.0.0.1:8000/etudiant/{{ formulaire.id_formulaire }}</a> - 
                 <a href="/admin/mon_projet/formulaire/{{ formulaire.id_formulaire }}/change/">Modifier</a>
             </li>
