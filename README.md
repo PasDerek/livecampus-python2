@@ -40,9 +40,10 @@ Réalisée via Django
     - [X] Details des formulaires : statistiques et réponses individuelles
 - Accès étudiant -> Base user perso. | Accès via token JWT
     - [X] Page de login (formulaire) : Génération du token JWT
+        - [ ] Page de login : gérer les sessions déjà connectées
     - [X] Bouton logout : Suppression du token
     - [ ] Affichage des formulaires ouverts
-    - [ ] Page de réponse au formulaire : 
+    - [X] Page de réponse au formulaire : 
     -> [X] Si réponse déjà présente, pré-remplir le formulaire
     -> [ ] Fonction collecte de réponses
 
@@ -62,7 +63,6 @@ SECRETS = {
 - [ ] CORS
 
 ## MISC
-- [ ] Page de login : gérer les sessions déjà connectées
 - [ ] Commenter tout le code 
 - [ ] Ajouter du style CSS
 - [ ] Header + Footer ?
