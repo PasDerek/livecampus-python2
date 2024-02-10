@@ -41,29 +41,30 @@ Réalisée via Django
 - Accès étudiant -> Base user perso. | Accès via token JWT
     - [X] Page de login (formulaire) : Génération du token JWT
     - [X] Bouton logout : Suppression du token
-    - [] Affichage des formulaires ouverts
-    - [] Page de réponse au formulaire : 
+    - [ ] Affichage des formulaires ouverts
+    - [ ] Page de réponse au formulaire : 
     -> [X] Si réponse déjà présente, pré-remplir le formulaire
-    -> [] Fonction collecte de réponses
+    -> [ ] Fonction collecte de réponses
 
 ### Fichier **env**
 ***Fichier non git*** (faire de même pour les identifiants dans *settings.py*)
 ```
 SECRETS = {
     'JWT' : *type:string*,         
-    'JWT_algo' : '',    
-    'SALT' :            
+    'JWT_algo' : *type:string*,    
+    'SALT' : *type:byte*            
 }
 ```
 
 ## Flask
 
-- [] API collecte des réponses et update entées BDD 
-- [] CORS
+- [ ] API collecte des réponses et update entées BDD 
+- [ ] CORS
 
-## A FAIRE
-- [] Commenter tout le code 
-- [] Ajouter du style CSS
-- [] Header + Footer ?
-- [] Gestion des erreurs plus poussée
-- [] Optimisation
+## MISC
+- [ ] Page de login : gérer les sessions déjà connectées
+- [ ] Commenter tout le code 
+- [ ] Ajouter du style CSS
+- [ ] Header + Footer ?
+- [ ] Gestion des erreurs plus poussée
+- [ ] Optimisation
