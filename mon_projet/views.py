@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from collections import defaultdict
 from .models import Etudiant
 from .models import Formulaire
 from .models import ReponsesFormulaire
+from .forms import LoginForm
+from . import utility
 
 @login_required(login_url="/admin/login/?next=/formateur/")
 def list_forms_admin(request):
@@ -37,7 +39,30 @@ def detail_forms_admin(request, id_formulaire):
         'count_maitrise' : count_maitrise.items()
     })
 
+def login_etudiant(request):
+    form = LoginForm()
+    message = ''
+    if request.method == 'POST':   
+        form = LoginForm(request.POST)    
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = utility.hash_password(form.cleaned_data['password'])
+
+            try:
+                Etudiant.objects.get(username=username, password=password)
+                token = utility.generate_jwt(username)
+                response = HttpResponseRedirect('/etudiant/1')
+                response.set_cookie('JWT', token)
+                return response
+            except Etudiant.DoesNotExist:
+                message = 'Utilisateur ou mot de passe incorrect !'
+
+    return render(request, 'login.html', {
+        'form' : form, 
+        'message' : message })
+
 def forms_etudiant(request, id_formulaire):
+    request.get_co
     formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
     if formulaire[0].ouvert:
         reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)

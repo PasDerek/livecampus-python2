@@ -24,5 +24,6 @@ urlpatterns = [
     path("accounts/login/", auth_views.LoginView.as_view()),
     path('formateur/', views.list_forms_admin),
     path('formateur/<str:id_formulaire>/', views.detail_forms_admin),
-    path('etudiant/<str:id_formulaire>/', views.forms_etudiant)
+    path('etudiant/<str:id_formulaire>/', views.forms_etudiant),
+    path('login/', views.login_etudiant)
 ]
