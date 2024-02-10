@@ -62,7 +62,6 @@ def login_etudiant(request):
         'message' : message })
 
 def forms_etudiant(request, id_formulaire):
-    request.get_co
     formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
     if formulaire[0].ouvert:
         reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)
