@@ -7,7 +7,9 @@
 <script type="text/javascript" nonce="1c5e4adce29641d695fc7c6e0d7" src="//local.adguard.org?ts=1707242724040&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
 <body>
 
-<h2>Formulaire n°{{ id_formulaire }}</h2>
+<h2>{{ formulaire.nom_formulaire }} (ID {{ formulaire.id_formulaire }})</h2>
+<p>Ouvert depuis : {{ formulaire.date_ouverture | date:"H:i - d/m/Y" }}</p>
+<br/>
 
 <div>
     <p>Votre nom : {{ reponse.numero_etudiant.nom }} {{ reponse.numero_etudiant.prenom}} </p>
@@ -18,33 +20,38 @@
 
     <div>
         <label for="rangeProgress1">Progression :</label>
-        <input type="range" id="rangeProgress1" name="progression" min="0" max="100" value="0" step="5" oninput="this.nextElementSibling.value = this.value + '%'">
-        <output>0%</output>
+        <input type="range" id="rangeProgress1" name="progression" min="0" max="100" value={% if reponse.progression %}"{{ reponse.progression }}"{% else %}"0"{% endif %} step="5" oninput="this.nextElementSibling.value = this.value + '%'">
+        <output>{% if reponse.progression %}{{ reponse.progression }}{% else %}0{% endif %}%</output>
     </div>
 
     <fieldset>
         <legend>Difficulté</legend>
-        <input type="radio" id="difficulte1" name="difficulte" value="Facile">
+        <input type="radio" id="difficulte1" name="difficulte" value="Facile" {% if 'Facile' in reponse.difficulte %}checked{% endif %}>
         <label for="difficulte1">Facile</label><br>
-        <input type="radio" id="difficulte2" name="difficulte" value="OK">
-        <label for="difficulte2">Facile</label><br>
-        <input type="radio" id="difficulte3" name="difficulte" value="Un peu compliqué">
-        <label for="difficulte3">Facile</label><br>
-        <input type="radio" id="difficulte4" name="difficulte" value="Très compliqué">
-        <label for="difficulte4">Facile</label><br>
-        <input type="radio" id="difficulte4" name="difficulte" value="Au secours">
+        <input type="radio" id="difficulte2" name="difficulte" value="OK" {% if 'OK' in reponse.difficulte %}checked{% endif %}>
+        <label for="difficulte2">Ok</label><br>
+        <input type="radio" id="difficulte3" name="difficulte" value="Un peu compliqué" {% if 'peu' in reponse.difficulte %}checked{% endif %}>
+        <label for="difficulte3">Un peu compliqué</label><br>
+        <input type="radio" id="difficulte4" name="difficulte" value="Très compliqué" {% if 'Très' in reponse.difficulte %}checked{% endif %}>
+        <label for="difficulte4">Très compliqué</label><br>
+        <input type="radio" id="difficulte5" name="difficulte" value="Au secours" {% if 'secours' in reponse.difficulte %}checked{% endif %}>
         <label for="difficulte5">Au secours</label><br>
     </fieldset>
 
     <fieldset>
-        <input type="radio" id="maitrise1" name="difficulte" value="J&#39;ai compris">
+        <legend>Maitrise</legend>
+        <input type="radio" id="maitrise1" name="maitrise" value="J'ai compris" {% if 'compris' in reponse.maitrise %}checked{% endif %}>
         <label for="maitrise1">J'ai compris</label><br>
-        <input type="radio" id="maitrise2" name="difficulte" value="Je dois encore pratiquer">
+        <input type="radio" id="maitrise2" name="maitrise" value="Je dois encore pratiquer" {% if 'pratiquer' in reponse.maitrise %}checked{% endif %}>
         <label for="maitrise2">Je dois encore pratiquer</label><br>
-        <input type="radio" id="maitrise3" name="difficulte" value="C&#39;est flou">
-        <label for="maitrise3">Facile</label><br>
+        <input type="radio" id="maitrise3" name="Maitrise" value="C'est flou" {% if 'flou' in reponse.maitrise %}checked{% endif %}>
+        <label for="maitrise3">C'est flou</label><br>
     </fieldset>
 </form>
+
+<br/>
+<p>Réponses automatiquement envoyées toutes les minutes</p>
+<br/><a href="/logout/">Logout</a>
 
 <!-- <script>
 function collecterDonneesEtEnvoyer() {
