@@ -40,7 +40,7 @@ Réalisée via Django
     - [X] Details des formulaires : statistiques et réponses individuelles
 - Accès étudiant -> Base user perso. | Accès via token JWT
     - [X] Page de login (formulaire) : Génération du token JWT
-        - [ ] Page de login : gérer les sessions déjà connectées
+        - [ ] Gérer les sessions déjà connectées
     - [X] Bouton logout : Suppression du token
     - [ ] Affichage des formulaires ouverts
     - [X] Page de réponse au formulaire : 
