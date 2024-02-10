@@ -21,9 +21,9 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', views.login_etudiant),
-    path('logout/', views.logout),
-    path('formateur/', views.list_forms_admin),
-    path('formateur/<str:id_formulaire>/', views.detail_forms_admin),
-    path('etudiant/<str:id_formulaire>/', views.forms_etudiant),
+    path('login/', views.etudiant_login),
+    path('logout/', views.etudiant_logout),
+    path('formateur/', views.formateur_list),
+    path('formateur/<str:id_formulaire>/', views.formateur_details),
+    path('etudiant/<str:id_formulaire>/', views.etudiant_formulaire),
 ]

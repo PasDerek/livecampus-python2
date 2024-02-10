@@ -11,12 +11,12 @@ from .forms import LoginForm
 from . import utility
 
 @login_required(login_url="/admin/login/?next=/formateur/")
-def list_forms_admin(request):
+def formateur_list(request):
     formulaires = Formulaire.objects.all()
     return render(request, 'formateur_list.html', {'formulaires': formulaires})
 
 @login_required(login_url="/admin/login/?next=/formateur/<str:id_formulaire>/")
-def detail_forms_admin(request, id_formulaire):
+def formateur_details(request, id_formulaire):
     reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)
     total_reponses = reponses.count()
     moy_progression = reponses.aggregate(avg_progression=Avg('progression'))['avg_progression'] or 0
@@ -40,7 +40,7 @@ def detail_forms_admin(request, id_formulaire):
         'count_maitrise' : count_maitrise.items()
     })
 
-def login_etudiant(request):
+def etudiant_login(request):
     form = LoginForm()
     message = ''
     if request.method == 'POST':   
@@ -62,7 +62,7 @@ def login_etudiant(request):
         'form' : form, 
         'message' : message })
 
-def logout(request):
+def etudiant_logout(request):
     try:
         reponse = redirect('/login/')
         reponse.delete_cookie('JWT')
@@ -71,7 +71,7 @@ def logout(request):
         return HttpResponse("Une erreur s'est produite")
 
 
-def forms_etudiant(request, id_formulaire):
+def etudiant_formulaire(request, id_formulaire):
     try:
         token = request.COOKIES.get('JWT')
         if token:
