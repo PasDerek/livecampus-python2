@@ -8,7 +8,8 @@
     <h1>Liste des formulaires</h1>
     <ul>
         {% for formulaire in formulaires %}
-            <li><a href="/formateur/{{ formulaire.id_formulaire }}">Formulaire n°{{ formulaire.id_formulaire }}</a> - 
+            <li><a href="/formateur/{{ formulaire.id_formulaire }}">{{ formulaire.nom_formulaire }}</a> - 
+                ID : {{ formulaire.id_formulaire }} - 
                 Status : 
                 {%if formulaire.ouvert %} 
                     <span style="color: rgb(45, 238, 45);">Ouvert</span>

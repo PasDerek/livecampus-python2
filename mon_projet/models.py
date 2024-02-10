@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from .utility import *
 
 class Etudiant(models.Model):
     numero_etudiant = models.AutoField(primary_key=True)
@@ -9,11 +10,16 @@ class Etudiant(models.Model):
     email = models.EmailField(max_length=100, null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
 
+    def save(self, *args, **kwargs):
+        self.password = hash_password(self.password)
+        super().save(*args, **kwargs)
+
 class Formulaire(models.Model):
     id_formulaire = models.AutoField(primary_key=True)
+    nom_formulaire = models.CharField(max_length=50, null=False)
     ouvert = models.BooleanField(default=True)
-    date_ouverture = models.DateTimeField(auto_now_add=True)
-    date_fermeture = models.DateTimeField(null=True, blank=True)
+    date_ouverture = models.DateTimeField(auto_now_add=True, editable=False)
+    date_fermeture = models.DateTimeField(null=True, blank=True, editable=False)
 
     class Meta:
         verbose_name = 'Formulaire'
