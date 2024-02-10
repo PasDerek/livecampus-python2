@@ -51,7 +51,6 @@ def login_etudiant(request):
             try:
                 Etudiant.objects.get(username=username, password=password)
                 token = utility.generate_jwt(username)
-                print(type(token))
                 response = HttpResponseRedirect('/login')
                 response.set_cookie('JWT', token)
                 return response
