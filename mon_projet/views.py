@@ -13,7 +13,7 @@ from . import utility
 @login_required(login_url="/admin/login/?next=/formateur/")
 def list_forms_admin(request):
     formulaires = Formulaire.objects.all()
-    return render(request, 'formulaires_list.html', {'formulaires': formulaires})
+    return render(request, 'formateur_list.html', {'formulaires': formulaires})
 
 @login_required(login_url="/admin/login/?next=/formateur/<str:id_formulaire>/")
 def detail_forms_admin(request, id_formulaire):
@@ -31,7 +31,7 @@ def detail_forms_admin(request, id_formulaire):
         if reponse.maitrise:
             count_maitrise[reponse.maitrise] += 1
 
-    return render(request, 'formulaires_details.html', {
+    return render(request, 'formateur_details.html', {
         'id_formulaire' : id_formulaire,
         'reponses': reponses,
         'total_reponses': total_reponses,
@@ -58,7 +58,7 @@ def login_etudiant(request):
             except Etudiant.DoesNotExist:
                 message = 'Utilisateur ou mot de passe incorrect !'
 
-    return render(request, 'login.html', {
+    return render(request, 'etudiant_login.html', {
         'form' : form, 
         'message' : message })
 
@@ -81,7 +81,7 @@ def forms_etudiant(request, id_formulaire):
             formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire).first()
             if formulaire.ouvert:
                 reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
-                return render(request, 'formulaires_etudiant.html', {
+                return render(request, 'etudiant_formulaires.html', {
                     'formulaire' : formulaire,
                     'reponse': reponse})
             else:
