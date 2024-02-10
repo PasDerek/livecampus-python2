@@ -51,7 +51,8 @@ def login_etudiant(request):
             try:
                 Etudiant.objects.get(username=username, password=password)
                 token = utility.generate_jwt(username)
-                response = HttpResponseRedirect('/etudiant/1')
+                print(type(token))
+                response = HttpResponseRedirect('/login')
                 response.set_cookie('JWT', token)
                 return response
             except Etudiant.DoesNotExist:
@@ -62,12 +63,18 @@ def login_etudiant(request):
         'message' : message })
 
 def forms_etudiant(request, id_formulaire):
-    formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
-    if formulaire[0].ouvert:
-        reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)
-        return render(request, 'formulaires_etudiant.html', {
-            'id_formulaire' : id_formulaire,
-            'reponses': reponses})
+    token = request.COOKIES.get('JWT')
+    if token:
+        payload = utility.decode_jwt(token)
+        username = payload['username']
+        
+        formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire)
+        if formulaire[0].ouvert:
+            reponses = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire)
+            return render(request, 'formulaires_etudiant.html', {
+                'id_formulaire' : id_formulaire,
+                'reponses': reponses})
+        else:
+            return HttpResponse('Formulaire <span style="color: rgb(224, 42, 42);">fermé</span>')
     else:
-        return HttpResponse('Formulaire <span style="color: rgb(224, 42, 42);">fermé</span>')
-    
+        return HttpResponse('Merci de vous connecter')
