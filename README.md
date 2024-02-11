@@ -66,10 +66,11 @@ API_FLASK = 'http://127.0.0.1:5000'
 - **Formateur** : `admin:Pa$$w0rd`
 - **Etudiant** : `etudiant1:Pa$$w0rd`
 
-## Flask ![](https://geps.dev/progress/20)
+## Flask ![](https://geps.dev/progress/50)
 
-- [ ] API collecte des réponses et update entées BDD 
-- [ ] CORS
+- [X] CORS
+- [X] API collecte des réponses 
+- [ ] Update entées BDD 
 
 ## MISC ![](https://geps.dev/progress/30)
 - [ ] Commenter tout le code 
