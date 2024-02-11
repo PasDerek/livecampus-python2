@@ -2,3 +2,4 @@
 mon_projet/__pycache__/
 mon_projet/migrations/
 mon_projet/env.py
+__pycache__/
