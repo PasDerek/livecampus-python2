@@ -3,7 +3,7 @@ from flask_cors import CORS, cross_origin
 import mysql.connector
 import sys
 sys.path.append('mon_projet')
-from mon_projet import env, settings
+from django import env, settings
 
 
 app = Flask(__name__)
@@ -27,7 +27,7 @@ def update_responses():
     progression = data.get('progression')
     difficulte = data.get('difficulte')
     maitrise = data.get('maitrise')
-    
+
     mycursor = mydb.cursor()
     mycursor.execute(f"SELECT * from mon_projet_reponsesformulaire WHERE id_formulaire_id = {id_formulaire} AND numero_etudiant_id = {numero_etudiant};")
     if mycursor.fetchall():

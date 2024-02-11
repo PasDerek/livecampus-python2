@@ -1,5 +1,5 @@
 .venv/
-mon_projet/__pycache__/
-mon_projet/migrations/
-mon_projet/env.py
+django/__pycache__/
+django/migrations/
+django/env.py
 __pycache__/
