@@ -78,5 +78,5 @@ API_FLASK = 'http://127.0.0.1:5000'
 - [ ] Ajouter du style CSS
 - [ ] Header + Footer ?
 - [X] Gestion des erreurs
-    - [ ] OPlus poussé 
+    - [ ] Plus poussé 
 - [ ] Optimisation
