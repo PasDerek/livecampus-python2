@@ -42,18 +42,18 @@ Réalisée via Django
     - [X] Page de login (formulaire) : Génération du token JWT
         - [ ] Gérer les sessions déjà connectées
     - [X] Bouton logout : Suppression du token
-    - [ ] Affichage des formulaires ouverts
+    - [ ] Affichage des formulaires avec status ouvert (liste)
     - [X] Page de réponse au formulaire : 
     -> [X] Si réponse déjà présente, pré-remplir le formulaire
     -> [ ] Fonction collecte de réponses
 
 ### Fichier **env**
-***Fichier non git*** (faire de même pour les identifiants dans *settings.py*)
+***Fichier non git*** (Note : faire de même pour les identifiants dans *settings.py*)
 ```
 SECRETS = {
-    'JWT' : *type:string*,         
-    'JWT_algo' : *type:string*,    
-    'SALT' : *type:byte*            
+    'JWT' : <type:string>,         
+    'JWT_algo' : <type:string>,    
+    'SALT' : <type:byte>            
 }
 ```
 
