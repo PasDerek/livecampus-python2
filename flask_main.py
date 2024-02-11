@@ -38,6 +38,8 @@ def update_responses():
         mycursor.execute(f"INSERT INTO mon_projet_reponsesformulaire (progression, difficulte, maitrise) VALUES ({progression}, \"{difficulte}\",  \"{maitrise}\");")
         mydb.commit()
 
+    mydb.close()
+
 
     return jsonify({'message': 'bla bla bla'})
 

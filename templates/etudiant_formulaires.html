@@ -84,11 +84,10 @@ function collecterDonneesEtEnvoyer() {
     .catch((error) => {
         console.error('Erreur:', error);
     });
-    window.setTimeout( function() {window.location.reload();}, 1000);
 }
 
 // Exécuter la fonction toutes les minutes
-setInterval(collecterDonneesEtEnvoyer, 10000);
+setInterval(collecterDonneesEtEnvoyer, 60000);
 </script>
 </body>
 </html>
