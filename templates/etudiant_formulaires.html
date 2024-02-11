@@ -88,6 +88,8 @@ function collecterDonneesEtEnvoyer() {
 
 // Exécuter la fonction toutes les minutes
 setInterval(collecterDonneesEtEnvoyer, 60000);
+// Recharger la page toutes les 10 minutes
+window.setTimeout( function() {window.location.reload();}, 100000);
 </script>
 </body>
 </html>
