@@ -106,6 +106,7 @@ def etudiant_formulaire(request, id_formulaire):
                     etudiant = Etudiant.objects.filter(username=username).first()
                     init = ReponsesFormulaire.objects.create(id_formulaire_id=id_formulaire, numero_etudiant_id=etudiant.numero_etudiant, date_access=timezone.now())
                     init.save()
+                    reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
                 urlAPI = env.API_FLASK
                 return render(request, 'etudiant_formulaires.html', {
                     'formulaire' : formulaire,
