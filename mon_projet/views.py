@@ -97,10 +97,9 @@ def etudiant_list(request):
 def etudiant_formulaire(request, id_formulaire):
     try:
         token = request.COOKIES.get('JWT')
-        if token:
-            payload = utility.decode_jwt(token)
-            username = payload['username']
-            
+        payload = utility.decode_jwt(token)
+        username = payload['username']
+        if username:            
             formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire).first()
             if formulaire.ouvert:
                 reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
@@ -114,12 +113,11 @@ def etudiant_formulaire(request, id_formulaire):
         else:
             return HttpResponseRedirect('/login/')
     except jwt.ExpiredSignatureError:
-        reponse = HttpResponseRedirect('/login/')
-        reponse.delete_cookie('JWT')
+        reponse = HttpResponseRedirect('/logout/')
         return reponse
     except jwt.InvalidTokenError:
-        reponse = HttpResponseRedirect('/login/')
-        reponse.delete_cookie('JWT')
+        reponse = HttpResponseRedirect('/logout/')
         return reponse
-
-    
+    except KeyError:
+        reponse = HttpResponseRedirect('/logout/')
+        return reponse
