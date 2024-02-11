@@ -41,26 +41,29 @@ def formateur_details(request, id_formulaire):
     })
 
 def etudiant_login(request):
-    form = LoginForm()
-    message = ''
-    if request.method == 'POST':   
-        form = LoginForm(request.POST)    
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = utility.hash_password(form.cleaned_data['password'])
+    if not request.COOKIES.get('JWT'):
+        form = LoginForm()
+        message = ''
+        if request.method == 'POST':   
+            form = LoginForm(request.POST)    
+            if form.is_valid():
+                username = form.cleaned_data['username']
+                password = utility.hash_password(form.cleaned_data['password'])
 
-            try:
-                Etudiant.objects.get(username=username, password=password)
-                token = utility.generate_jwt(username)
-                reponse = HttpResponseRedirect('/etudiant/')
-                reponse.set_cookie('JWT', token)
-                return reponse
-            except Etudiant.DoesNotExist:
-                message = 'Utilisateur ou mot de passe incorrect !'
+                try:
+                    Etudiant.objects.get(username=username, password=password)
+                    token = utility.generate_jwt(username)
+                    reponse = HttpResponseRedirect('/etudiant/')
+                    reponse.set_cookie('JWT', token)
+                    return reponse
+                except Etudiant.DoesNotExist:
+                    message = 'Utilisateur ou mot de passe incorrect !'
 
-    return render(request, 'etudiant_login.html', {
-        'form' : form, 
-        'message' : message })
+        return render(request, 'etudiant_login.html', {
+            'form' : form, 
+            'message' : message })
+    else:
+        return HttpResponse("Déjà connecté<br/><a href='/etudiant/'>Formulaires</a><br/><a href='/logout/'>Logout</a>")
 
 def etudiant_logout(request):
     try:
