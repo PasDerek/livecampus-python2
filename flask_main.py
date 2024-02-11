@@ -27,8 +27,7 @@ def update_responses():
     progression = data.get('progression')
     difficulte = data.get('difficulte')
     maitrise = data.get('maitrise')
-    print(data)
-
+    
     mycursor = mydb.cursor()
     mycursor.execute(f"SELECT * from mon_projet_reponsesformulaire WHERE id_formulaire_id = {id_formulaire} AND numero_etudiant_id = {numero_etudiant};")
     if mycursor.fetchall():
