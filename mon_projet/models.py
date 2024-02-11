@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from .utility import *
 
+# Table mon_projet_tudiant
 class Etudiant(models.Model):
     numero_etudiant = models.AutoField(primary_key=True)
     username = models.CharField(max_length=50, unique=True, null=False)
@@ -10,10 +11,12 @@ class Etudiant(models.Model):
     email = models.EmailField(max_length=100, null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
 
+    # Sauvegarder = Hash mot de passe avec fonction bcrypt
     def save(self, *args, **kwargs):
         self.password = hash_password(self.password)
         super().save(*args, **kwargs)
 
+# Table Formulaire
 class Formulaire(models.Model):
     id_formulaire = models.AutoField(primary_key=True)
     nom_formulaire = models.CharField(max_length=50, null=False)
