@@ -20,12 +20,17 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
+    # Page d'accueil avec lien vers certaines des autres pages
     path('', views.home),
+    # Vue admin par défaut
     path('admin/', admin.site.urls),
+    # Etudiants - Login et logout
     path('login/', views.etudiant_login),
     path('logout/', views.etudiant_logout),
+    # Formateurs - Pages de listing et de détail
     path('formateur/', views.formateur_list),
     path('formateur/<str:id_formulaire>/', views.formateur_details),
+    # Etudiants - Pages de listing et de détails
     path('etudiant/', views.etudiant_list),
     path('etudiant/<str:id_formulaire>/', views.etudiant_formulaire),
 ]

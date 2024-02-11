@@ -74,6 +74,7 @@ WSGI_APPLICATION = 'mon_projet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# Informations de connexion à la base de données
 DATABASES = {
     'default': {
         'ENGINE': 'mysql.connector.django',

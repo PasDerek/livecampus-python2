@@ -20,7 +20,7 @@ class Etudiant(models.Model):
         self.password = hash_password(self.password)
         super().save(*args, **kwargs)
 
-# Table Formulaire
+# Table mon_projet_formulaire
 class Formulaire(models.Model):
     id_formulaire = models.AutoField(primary_key=True)
     nom_formulaire = models.CharField(max_length=50, null=False)
@@ -32,6 +32,7 @@ class Formulaire(models.Model):
         verbose_name = 'Formulaire'
         verbose_name_plural = 'Formulaires'
 
+    # Sauvegarder = Si formulaire ouvert, écraser date ouverture et supprimer heure fermeture. Si formulaire fermé, écrire la date de fermeture
     def save(self, *args, **kwargs):
         if self.ouvert:
             self.date_ouverture = timezone.now()
@@ -40,6 +41,8 @@ class Formulaire(models.Model):
             self.date_fermeture = timezone.now()
         super().save(*args, **kwargs)
 
+# Table mon_projet_reponsesformulaire
+# 2 foreign key : id_formulaire de Formulaire et numero_etudiant de Etudiant
 class ReponsesFormulaire(models.Model):
     id_formulaire = models.ForeignKey(Formulaire, on_delete=models.CASCADE)
     numero_etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
