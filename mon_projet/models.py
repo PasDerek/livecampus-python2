@@ -39,3 +39,4 @@ class ReponsesFormulaire(models.Model):
     progression = models.IntegerField(default=0)
     difficulte = models.CharField(max_length=50, default='Vide')
     maitrise = models.CharField(max_length=50, default='Vide')
+    date_access = models.DateTimeField(null=True, blank=True, editable=False)

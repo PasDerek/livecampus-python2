@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.db.models import Avg
 from django.http import HttpResponse, HttpResponseRedirect
+from django.utils import timezone
 from collections import defaultdict
 import jwt
 from .models import Etudiant
@@ -25,8 +26,6 @@ def formateur_details(request, id_formulaire):
     moy_progression = reponses.aggregate(avg_progression=Avg('progression'))['avg_progression'] or 0
     count_difficulte = defaultdict(int)
     count_maitrise = defaultdict(int)
-
-    print(reponses.values())
     
     for reponse in reponses:
         if reponse.difficulte:
@@ -103,6 +102,10 @@ def etudiant_formulaire(request, id_formulaire):
             formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire).first()
             if formulaire.ouvert:
                 reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
+                if not reponse:
+                    etudiant = Etudiant.objects.filter(username=username).first()
+                    init = ReponsesFormulaire.objects.create(id_formulaire_id=id_formulaire, numero_etudiant_id=etudiant.numero_etudiant, date_access=timezone.now())
+                    init.save()
                 urlAPI = env.API_FLASK
                 return render(request, 'etudiant_formulaires.html', {
                     'formulaire' : formulaire,

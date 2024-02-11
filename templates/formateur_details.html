@@ -27,6 +27,7 @@
     {% for reponse in reponses %}
     <ul>
         <li><strong>Etudiant:</strong> {{ reponse.numero_etudiant.nom }} {{ reponse.numero_etudiant.prenom}}</li>
+        <li><strong>Premier accès:</strong> {{ reponse.date_access | date:"H:i - d/m/Y" }}</li>
         <li><strong>Progression:</strong> {{ reponse.progression }}%</li>
         <li><strong>Difficulté:</strong> {{ reponse.difficulte }}</li>
         <li><strong>Maitrise:</strong> {{ reponse.maitrise }}</li>
