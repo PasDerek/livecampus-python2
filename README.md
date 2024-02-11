@@ -28,7 +28,7 @@ Réalisée via Django
 - difficulte -> varchar, not null
 - maitrise -> varchar, not null
 
-## Django
+## Django ![](https://geps.dev/progress/80)
 
 ### Détail des pages
 - Page admin
@@ -57,19 +57,21 @@ SECRETS = {
     'JWT_algo' : <type:string>,    
     'SALT' : <type:byte>            
 }
+
+API_FLASK = 'http://127.0.0.1:5000'
 ```
 
 ### Utilisateurs de test
 - **Formateur** : `admin:Pa$$w0rd`
 - **Etudiant** : `etudiant1:Pa$$w0rd`
 
-## Flask
+## Flask ![](https://geps.dev/progress/0)
 
 - [ ] API collecte des réponses et update entées BDD 
     - [ ] Si première réponse, enregistrer date/heure
 - [ ] CORS
 
-## MISC
+## MISC ![](https://geps.dev/progress/0)
 - [ ] Commenter tout le code 
 - [ ] Ajouter du style CSS
 - [ ] Header + Footer ?
