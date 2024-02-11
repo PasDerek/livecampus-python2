@@ -73,9 +73,10 @@ API_FLASK = 'http://127.0.0.1:5000'
 - [X] Update entées BDD 
 - [ ] Gestion des sessions (token)
 
-## MISC ![](https://geps.dev/progress/30)
-- [ ] Commenter tout le code 
+## MISC ![](https://geps.dev/progress/50)
+- [X] Commenter tout le code 
 - [ ] Ajouter du style CSS
 - [ ] Header + Footer ?
-- [ ] Gestion des erreurs plus poussée
+- [X] Gestion des erreurs
+    - [ ] OPlus poussé 
 - [ ] Optimisation
