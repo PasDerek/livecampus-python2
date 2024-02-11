@@ -32,9 +32,11 @@ Réalisée via Django
 
 ### Détail des pages
 - Page admin
-    - [X] Importer projet
+    - [X] Importer projet (INSTALLED_APPS)
         - Création des utilisateurs
+            - [ ] Page création etudiant perso
         - Création ds formulaires
+            - [ ] Page création formulaire perso
 - Accès formateur -> Base user django | Accès via `login_required()`
     - [X] Affichage des TOUS les formulaires (liste) : Status, date, lien étudiant, lien modification
     - [X] Details des formulaires : statistiques et réponses individuelles
@@ -57,7 +59,7 @@ SECRETS = {
 }
 ```
 
-### Utilisateurs de test :
+### Utilisateurs de test
 **Formateur** : `admin:Pa$$w0rd`
 **Etudiant** : `etudiant1:Pa$$w0rd`
 
