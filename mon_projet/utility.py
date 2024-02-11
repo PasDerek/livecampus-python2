@@ -11,7 +11,7 @@ def generate_jwt(username):
     #Generation de token
     payload = {
         'username': username,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=10)
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
     }
     token = jwt.encode(payload, env.SECRETS['JWT'], env.SECRETS['JWT_algo']).decode('utf-8')
     return token
