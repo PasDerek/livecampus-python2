@@ -1,3 +1,4 @@
+from django.http import HttpResponse, HttpResponseRedirect
 import bcrypt
 from . import env
 import datetime
@@ -18,3 +19,16 @@ def generate_jwt(username):
 def decode_jwt(token):
     payload = jwt.decode(token, env.SECRETS['JWT'], env.SECRETS['JWT_algo'])
     return payload
+
+def token_required(request):
+    try:
+        token = request.COOKIES.get('JWT')
+        return token
+    except jwt.ExpiredSignatureError:
+        reponse = HttpResponseRedirect('/login/')
+        reponse.delete_cookie('JWT')
+        return reponse
+    except jwt.InvalidTokenError:
+        reponse = HttpResponseRedirect('/login/')
+        reponse.delete_cookie('JWT')
+        return reponse

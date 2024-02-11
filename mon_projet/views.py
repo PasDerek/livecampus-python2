@@ -72,30 +72,19 @@ def etudiant_logout(request):
 
 
 def etudiant_formulaire(request, id_formulaire):
-    try:
-        token = request.COOKIES.get('JWT')
-        if token:
-            payload = utility.decode_jwt(token)
-            username = payload['username']
-            
-            formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire).first()
-            if formulaire.ouvert:
-                reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
-                return render(request, 'etudiant_formulaires.html', {
-                    'formulaire' : formulaire,
-                    'reponse': reponse})
-            else:
-                return HttpResponse('Formulaire <span style="color: rgb(224, 42, 42);">fermé</span>')
+    token = utility.token_required(request)
+    if token:
+        payload = utility.decode_jwt(token)
+        username = payload['username']
+        
+        formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire).first()
+        if formulaire.ouvert:
+            reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
+            return render(request, 'etudiant_formulaires.html', {
+                'formulaire' : formulaire,
+                'reponse': reponse})
         else:
-            return HttpResponseRedirect('/login/')
-    
-    except jwt.ExpiredSignatureError:
-        reponse = HttpResponseRedirect('/login/')
-        reponse.delete_cookie('JWT')
-        return reponse
-    except jwt.InvalidTokenError:
-        reponse = HttpResponseRedirect('/login/')
-        reponse.delete_cookie('JWT')
-        return reponse
-    
+            return HttpResponse('Formulaire <span style="color: rgb(224, 42, 42);">fermé</span>')
+    else:
+        return HttpResponseRedirect('/login/')
     
