@@ -56,12 +56,14 @@
 <script>
 function collecterDonneesEtEnvoyer() {
     const username = '{{ reponse.numero_etudiant.username }}';
+    const numero_etudiant = '{{ reponse.numero_etudiant }}';
     const progressions = document.getElementById('progression').value;
     const difficulte = document.querySelector('input[name="difficulte"]:checked')?.value;
     const maitrise = document.querySelector('input[name="maitrise"]:checked')?.value;
 
     const data = {
         username: username,
+        numero_etudiant: numero_etudiant,
         difficulte: difficulte,
         maitrise: maitrise,
         progressions: progressions
