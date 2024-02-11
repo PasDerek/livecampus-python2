@@ -17,8 +17,13 @@ def generate_jwt(username):
     return token
 
 def decode_jwt(token):
-    payload = jwt.decode(token, env.SECRETS['JWT'], env.SECRETS['JWT_algo'])
-    return payload
+    try:
+        payload = jwt.decode(token, env.SECRETS['JWT'], env.SECRETS['JWT_algo'])
+        return payload
+    except:
+        reponse = HttpResponseRedirect('/login/')
+        reponse.delete_cookie('JWT')
+        return reponse
 
 def token_required(request):
     try:

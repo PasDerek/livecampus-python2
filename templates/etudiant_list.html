@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des formulaires actifs</title>
+</head>
+<body>
+    <h1>Liste des formulaires actifs</h1>
+    <ul>
+        {% for formulaire in formulaires %}
+            <li><a href="/etudiant/{{ formulaire.id_formulaire }}">{{ formulaire.nom_formulaire }}</a> - 
+                ID : {{ formulaire.id_formulaire }} - 
+                Date d'ouverture : {{ formulaire.date_ouverture | date:"d/m/Y à H:i" }}
+            </li>
+        {% endfor %}
+    </ul>
+
+<br/><a href="/logout/">Logout</a>
+
+</body>
+</html>

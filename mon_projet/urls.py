@@ -25,5 +25,6 @@ urlpatterns = [
     path('logout/', views.etudiant_logout),
     path('formateur/', views.formateur_list),
     path('formateur/<str:id_formulaire>/', views.formateur_details),
+    path('etudiant/', views.etudiant_list),
     path('etudiant/<str:id_formulaire>/', views.etudiant_formulaire),
 ]
