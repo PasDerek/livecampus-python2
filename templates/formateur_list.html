@@ -1,3 +1,4 @@
+<!-- Liste des formulaires, vue formateur - url : '/formateur/' - view : formateur_list -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,8 @@
 </head>
 <body>
     <h1>Liste des formulaires</h1>
+    <!-- Lister tous les formulaires -->
+    <!-- Nom + lien vers la page de détails, ID, Status (couleur), Dates d'ouverture et de fermeture (format), URL étudiant, bouton modifier -->
     <ul>
         {% for formulaire in formulaires %}
             <li><a href="/formateur/{{ formulaire.id_formulaire }}">{{ formulaire.nom_formulaire }}</a> - 
@@ -24,6 +27,7 @@
         {% endfor %}
     </ul>
 
+<!-- Lien de page admin -->
 <a href="/admin/mon_projet/">Page admin</a>
 
 </body>

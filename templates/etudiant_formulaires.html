@@ -1,3 +1,4 @@
+<!-- Formulaire de réponse étudiants - url : '/étudiant/<id_formulaire>' - view : etudiant_formulaire -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,10 +8,12 @@
 <script type="text/javascript" nonce="1c5e4adce29641d695fc7c6e0d7" src="//local.adguard.org?ts=1707242724040&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;type=user-script"></script></head>
 <body>
 
+<!-- Nom du formulaire, son ID et sa date d'ouvertue (format) -->
 <h2>{{ formulaire.nom_formulaire }} (ID {{ formulaire.id_formulaire }})</h2>
 <p>Ouvert depuis : {{ formulaire.date_ouverture | date:"H:i - d/m/Y" }}</p>
 <br/>
 
+<!-- Afficage du nom et du prenom, usage de la foreign key -->
 <div>
     <p>Votre nom : {{ reponse.numero_etudiant.nom }} {{ reponse.numero_etudiant.prenom}} </p>
 </div>
@@ -18,12 +21,17 @@
 
 <form id="monFormulaire">
 
+    <!-- Barre de progression -->
     <div>
         <label for="rangeProgress1">Progression :</label>
+        <!-- Minimum = 0, Maximum = 100, Default = 0, Step = 5 -->
+        <!-- Si l'utilisateur avait déjà répondu, afficher cette valeur, sinon 0  -->
         <input type="range" id="progression" name="progression" min="0" max="100" value={% if reponse.progression %}"{{ reponse.progression }}"{% else %}"0"{% endif %} step="5" oninput="this.nextElementSibling.value = this.value + '%'">
         <output>{% if reponse.progression %}{{ reponse.progression }}{% else %}0{% endif %}%</output>
     </div>
     <br/>
+    <!-- Choix simple du niveau de difficulté -->
+    <!-- Si l'utilisateur a déjà répondu, cocher la case correspondate. Sinon ne rien faire -->
     <fieldset>
         <legend>Difficulté</legend>
         <input type="radio" id="difficulte1" name="difficulte" value="Facile" {% if 'Facile' in reponse.difficulte %}checked{% endif %}>
@@ -38,6 +46,8 @@
         <label for="difficulte5">Au secours</label><br>
     </fieldset>
 
+    <!-- Choix simple du niveau de la maitrise -->
+    <!-- Si l'utilisateur a déjà répondu, cocher la case correspondante. Sinon ne rien faire -->
     <fieldset>
         <legend>Maitrise</legend>
         <input type="radio" id="maitrise1" name="maitrise" value="J'ai compris" {% if 'compris' in reponse.maitrise %}checked{% endif %}>
@@ -51,10 +61,13 @@
 
 <br/>
 <p>Réponses automatiquement envoyées toutes les minutes</p>
+<!-- Liens de retour et de logout -->
 <br/><a href="/etudiant/">Retour</a>
 <br/><a href="/logout/">Logout</a>
 
+<!-- Script (JS) d'envoi automatique des données, pas de bouton submit -->
 <script>
+    // Récupération des données des éléments par leur variable, id ou name
 function collecterDonneesEtEnvoyer() {
     const id_formulaire = '{{ reponse.id_formulaire_id }}';
     const numero_etudiant = '{{ reponse.numero_etudiant_id }}';
@@ -62,6 +75,7 @@ function collecterDonneesEtEnvoyer() {
     const difficulte = document.querySelector('input[name="difficulte"]:checked')?.value;
     const maitrise = document.querySelector('input[name="maitrise"]:checked')?.value;
 
+    // Payload data avec toutes les données récupérées
     const data = {
         id_formulaire: id_formulaire,
         numero_etudiant: numero_etudiant,
@@ -70,6 +84,7 @@ function collecterDonneesEtEnvoyer() {
         maitrise: maitrise,
     };
 
+    // Envoie du payload a une autre URL, ici Flask, en JSON
     fetch('{{ urlAPI }}', {
         method: 'POST',
         headers: {
@@ -88,7 +103,7 @@ function collecterDonneesEtEnvoyer() {
 
 // Exécuter la fonction toutes les minutes
 setInterval(collecterDonneesEtEnvoyer, 60000);
-// Recharger la page toutes les 10 minutes
+// Recharger la page toutes les 10 minutes (tester la validité du token)
 window.setTimeout( function() {window.location.reload();}, 100000);
 </script>
 </body>

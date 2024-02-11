@@ -1,3 +1,4 @@
+<!-- Liste des résultats de formulaire - url : '/formateur/<id_formulaire>' - view : formateur_details -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +6,7 @@
     <title>Liste des formulaires</title>
 </head>
 <body>
+    <!-- Statistiques du formulaire : nombres de réponse, moyenne de progression, count difficulte, count maitrise -->
     <h1>Statistiques</h1>
     <p><strong>Nombre total de réponses:</strong> {{ total_reponses }}</p>
     <p><strong>Moyenne des progressions :</strong> {{ moy_progression }}%</p>
@@ -21,8 +23,7 @@
             {% endfor %}
         </ul>
     
-
-
+<!-- Détail des réponses individuelles (boucle foreach)-->
     <h1>Détails des réponses</h1>
     {% for reponse in reponses %}
     <ul>
@@ -34,6 +35,8 @@
         <br/>
     </ul>
     {% endfor %}
+    
+    <!-- Liens de retour et de page admin -->
     <br/><a href="/formateur/">Retour</a>
     <br/><a href="/admin/mon_projet/formulaire/{{ id_formulaire }}/change/">Modifier le formulaire</a>
 </body>
