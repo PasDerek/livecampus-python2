@@ -57,6 +57,10 @@ SECRETS = {
 }
 ```
 
+### Utilisateurs de test :
+**Formateur** : `admin:Pa$$w0rd`
+**Etudiant** : `etudiant1:Pa$$w0rd`
+
 ## Flask
 
 - [ ] API collecte des réponses et update entées BDD 
