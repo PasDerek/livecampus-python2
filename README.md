@@ -28,7 +28,9 @@ Réalisée via Django
 - difficulte -> varchar, not null
 - maitrise -> varchar, not null
 
-## Django ![](https://geps.dev/progress/95)
+
+## Django
+![](https://geps.dev/progress/95)
 
 ### Détail des pages
 - Page admin
@@ -66,14 +68,19 @@ API_FLASK = 'http://127.0.0.1:5000'
 - **Formateur** : `admin:Pa$$w0rd`
 - **Etudiant** : `etudiant1:Pa$$w0rd`
 
-## Flask ![](https://geps.dev/progress/85)
+
+## Flask
+![](https://geps.dev/progress/85)
 
 - [X] CORS
 - [X] API collecte des réponses 
 - [X] Update entées BDD 
 - [ ] Gestion des sessions (token)
 
-## MISC ![](https://geps.dev/progress/50)
+
+## MISC
+![](https://geps.dev/progress/50)
+
 - [X] Commenter tout le code 
 - [ ] Ajouter du style CSS
 - [ ] Header + Footer ?
