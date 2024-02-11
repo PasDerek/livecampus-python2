@@ -8,7 +8,7 @@ from .models import Etudiant
 from .models import Formulaire
 from .models import ReponsesFormulaire
 from .forms import LoginForm
-from . import utility
+from . import utility, env
 
 def home(request):
     return HttpResponse(("<a href='/admin/'>Panel Admin</a><br/><a href='/formateur/'>Page formateur</a><br/><a href='/etudiant/'>Page étudiant</a>"))
@@ -104,9 +104,11 @@ def etudiant_formulaire(request, id_formulaire):
             formulaire = Formulaire.objects.filter(id_formulaire=id_formulaire).first()
             if formulaire.ouvert:
                 reponse = ReponsesFormulaire.objects.filter(id_formulaire=id_formulaire, numero_etudiant__username__iexact=username).first()
+                urlAPI = env.API_FLASK
                 return render(request, 'etudiant_formulaires.html', {
                     'formulaire' : formulaire,
-                    'reponse': reponse})
+                    'reponse' : reponse,
+                    'urlAPI' : urlAPI})
             else:
                 return HttpResponse("Formulaire <span style='color: rgb(224, 42, 42);''>fermé</span>. <br/><a href='/etudiant/'>Retour</a>")
         else:
