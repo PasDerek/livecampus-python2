@@ -28,7 +28,7 @@ Réalisée via Django
 - difficulte -> varchar, not null
 - maitrise -> varchar, not null
 
-## Django ![](https://geps.dev/progress/80)
+## Django ![](https://geps.dev/progress/95)
 
 ### Détail des pages
 - Page admin
@@ -48,7 +48,7 @@ Réalisée via Django
     - [X] Page de réponse au formulaire : 
         - [X] Si réponse déjà présente, pré-remplir le formulaire
         - [X] Date premier accès
-        - [ ] Fonction collecte de réponses -> [Flask](#flask)
+        - [X] Fonction collecte de réponses -> [Flask](#flask)
 
 ### Fichier **env**
 ***Fichier non git*** (Note : faire de même pour les identifiants dans *settings.py*)
@@ -69,10 +69,9 @@ API_FLASK = 'http://127.0.0.1:5000'
 ## Flask ![](https://geps.dev/progress/0)
 
 - [ ] API collecte des réponses et update entées BDD 
-    - [ ] Si première réponse, enregistrer date/heure
 - [ ] CORS
 
-## MISC ![](https://geps.dev/progress/0)
+## MISC ![](https://geps.dev/progress/20)
 - [ ] Commenter tout le code 
 - [ ] Ajouter du style CSS
 - [ ] Header + Footer ?
