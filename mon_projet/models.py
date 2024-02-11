@@ -11,6 +11,10 @@ class Etudiant(models.Model):
     email = models.EmailField(max_length=100, null=False, unique=True)
     password = models.CharField(max_length=100, null=False)
 
+    class Meta:
+        verbose_name = 'Etudiant'
+        verbose_name_plural = 'Etudiants'
+
     # Sauvegarder = Hash mot de passe avec fonction bcrypt
     def save(self, *args, **kwargs):
         self.password = hash_password(self.password)
