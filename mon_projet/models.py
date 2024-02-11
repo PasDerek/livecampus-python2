@@ -36,6 +36,6 @@ class Formulaire(models.Model):
 class ReponsesFormulaire(models.Model):
     id_formulaire = models.ForeignKey(Formulaire, on_delete=models.CASCADE)
     numero_etudiant = models.ForeignKey(Etudiant, on_delete=models.CASCADE)
-    progression = models.IntegerField()
-    difficulte = models.CharField(max_length=50)
-    maitrise = models.CharField(max_length=50)
+    progression = models.IntegerField(default=0)
+    difficulte = models.CharField(max_length=50, default='Vide')
+    maitrise = models.CharField(max_length=50, default='Vide')
