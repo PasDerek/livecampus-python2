@@ -56,8 +56,7 @@
 
 <script>
 function collecterDonneesEtEnvoyer() {
-    const id_formulaire = '{{ reponse.id_formulaire_id }}'
-    const username = '{{ reponse.numero_etudiant.username }}';
+    const id_formulaire = '{{ reponse.id_formulaire_id }}';
     const numero_etudiant = '{{ reponse.numero_etudiant_id }}';
     const progression = document.getElementById('progression').value;
     const difficulte = document.querySelector('input[name="difficulte"]:checked')?.value;
@@ -65,7 +64,6 @@ function collecterDonneesEtEnvoyer() {
 
     const data = {
         id_formulaire: id_formulaire,
-        username: username,
         numero_etudiant: numero_etudiant,
         progression: progression,
         difficulte: difficulte,
