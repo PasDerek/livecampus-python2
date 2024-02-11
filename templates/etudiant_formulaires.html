@@ -44,7 +44,7 @@
         <label for="maitrise1">J'ai compris</label><br>
         <input type="radio" id="maitrise2" name="maitrise" value="Je dois encore pratiquer" {% if 'pratiquer' in reponse.maitrise %}checked{% endif %}>
         <label for="maitrise2">Je dois encore pratiquer</label><br>
-        <input type="radio" id="maitrise3" name="Maitrise" value="C'est flou" {% if 'flou' in reponse.maitrise %}checked{% endif %}>
+        <input type="radio" id="maitrise3" name="maitrise" value="C'est flou" {% if 'flou' in reponse.maitrise %}checked{% endif %}>
         <label for="maitrise3">C'est flou</label><br>
     </fieldset>
 </form>
@@ -84,6 +84,7 @@ function collecterDonneesEtEnvoyer() {
     .catch((error) => {
         console.error('Erreur:', error);
     });
+    window.setTimeout( function() {window.location.reload();}, 5000);
 }
 
 // Exécuter la fonction toutes les minutes
