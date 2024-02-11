@@ -12,12 +12,11 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = env.SECRETS["FLASK"]
 
 mydb = mysql.connector.connect(
-    host="localhost",
+    host=settings.DATABASES['default']['HOST'],
     user=settings.DATABASES['default']['USER'],
     password=settings.DATABASES['default']['PASSWORD'],
     database=settings.DATABASES['default']['NAME']
 )
-
 
 @app.route('/', methods=['POST'])
 @cross_origin()
@@ -28,18 +27,18 @@ def update_responses():
     progression = data.get('progression')
     difficulte = data.get('difficulte')
     maitrise = data.get('maitrise')
+    print(data)
 
     mycursor = mydb.cursor()
     mycursor.execute(f"SELECT * from mon_projet_reponsesformulaire WHERE id_formulaire_id = {id_formulaire} AND numero_etudiant_id = {numero_etudiant};")
     if mycursor.fetchall():
         mycursor.execute(f"UPDATE mon_projet_reponsesformulaire SET progression = {progression}, difficulte = \"{difficulte}\", maitrise = \"{maitrise}\" WHERE id_formulaire_id = {id_formulaire} AND numero_etudiant_id = {numero_etudiant};")
         mydb.commit()
+        mycursor.close()
     else:
-        mycursor.execute(f"INSERT INTO mon_projet_reponsesformulaire (progression, difficulte, maitrise) VALUES ({progression}, \"{difficulte}\",  \"{maitrise}\");")
+        mycursor.execute(f"INSERT INTO mon_projet_reponsesformulaire (id_formulaire_id, numero_etudiant_id, progression, difficulte, maitrise) VALUES ({id_formulaire}, {numero_etudiant}, {progression}, \"{difficulte}\",  \"{maitrise}\");")
         mydb.commit()
-
-    mydb.close()
-
+        mycursor.close()
 
     return jsonify({'message': 'bla bla bla'})
 
