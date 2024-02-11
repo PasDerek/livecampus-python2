@@ -44,8 +44,8 @@ Réalisée via Django
     - [X] Bouton logout : Suppression du token
     - [X] Affichage des formulaires avec status ouvert (liste)
     - [X] Page de réponse au formulaire : 
-    -> [X] Si réponse déjà présente, pré-remplir le formulaire
-    -> [ ] Fonction collecte de réponses
+        - [X] Si réponse déjà présente, pré-remplir le formulaire
+        - [ ] Fonction collecte de réponses -> [Flask](#flask)
 
 ### Fichier **env**
 ***Fichier non git*** (Note : faire de même pour les identifiants dans *settings.py*)
@@ -60,6 +60,7 @@ SECRETS = {
 ## Flask
 
 - [ ] API collecte des réponses et update entées BDD 
+    - [ ] Si première réponse, enregistrer date/heure
 - [ ] CORS
 
 ## MISC
