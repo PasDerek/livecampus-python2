@@ -3,7 +3,7 @@ from flask_cors import CORS, cross_origin
 import mysql.connector
 import sys
 sys.path.append('mon_projet')
-from django import env, settings
+from mon_projet import env, settings
 
 
 app = Flask(__name__)
