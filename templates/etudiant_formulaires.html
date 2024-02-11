@@ -20,7 +20,7 @@
 
     <div>
         <label for="rangeProgress1">Progression :</label>
-        <input type="range" id="rangeProgress1" name="progression" min="0" max="100" value={% if reponse.progression %}"{{ reponse.progression }}"{% else %}"0"{% endif %} step="5" oninput="this.nextElementSibling.value = this.value + '%'">
+        <input type="range" id="progression" name="progression" min="0" max="100" value={% if reponse.progression %}"{{ reponse.progression }}"{% else %}"0"{% endif %} step="5" oninput="this.nextElementSibling.value = this.value + '%'">
         <output>{% if reponse.progression %}{{ reponse.progression }}{% else %}0{% endif %}%</output>
     </div>
 
@@ -53,25 +53,21 @@
 <p>Réponses automatiquement envoyées toutes les minutes</p>
 <br/><a href="/logout/">Logout</a>
 
-<!-- <script>
+<script>
 function collecterDonneesEtEnvoyer() {
-    const nom = document.getElementById('nom').value;
-    const couleurChoisie = document.querySelector('input[name="couleur"]:checked')?.value;
-    const interetsChoisis = Array.from(document.querySelectorAll('input[name="interet"]:checked')).map(el => el.value);
-    const progressions = [
-        document.getElementById('rangeProgress1').value,
-        document.getElementById('rangeProgress2').value,
-        document.getElementById('rangeProgress3').value
-    ];
+    const username = '{{ reponse.numero_etudiant.username }}';
+    const progressions = document.getElementById('progression').value;
+    const difficulte = document.querySelector('input[name="difficulte"]:checked')?.value;
+    const maitrise = document.querySelector('input[name="maitrise"]:checked')?.value;
 
     const data = {
-        nom: nom,
-        couleur: couleurChoisie,
-        interets: interetsChoisis,
+        username: username,
+        difficulte: difficulte,
+        maitrise: maitrise,
         progressions: progressions
     };
 
-    fetch('URL_DE_VOTRE_API', {
+    fetch('{{ urlAPI }}', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -89,6 +85,6 @@ function collecterDonneesEtEnvoyer() {
 
 // Exécuter la fonction toutes les minutes
 setInterval(collecterDonneesEtEnvoyer, 60000);
-</script> -->
+</script>
 </body>
 </html>
