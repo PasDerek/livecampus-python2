@@ -10,6 +10,9 @@ from .models import ReponsesFormulaire
 from .forms import LoginForm
 from . import utility
 
+def home(request):
+    return HttpResponse(("<a href='/admin/'>Panel Admin</a><br/><a href='/formateur/'>Page formateur</a><br/><a href='/etudiant/'>Page étudiant</a>"))
+
 @login_required(login_url="/admin/login/?next=/formateur/")
 def formateur_list(request):
     formulaires = Formulaire.objects.all()
