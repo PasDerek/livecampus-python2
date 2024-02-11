@@ -42,7 +42,7 @@ Réalisée via Django
     - [X] Page de login (formulaire) : Génération du token JWT
         - [ ] Gérer les sessions déjà connectées
     - [X] Bouton logout : Suppression du token
-    - [ ] Affichage des formulaires avec status ouvert (liste)
+    - [X] Affichage des formulaires avec status ouvert (liste)
     - [X] Page de réponse au formulaire : 
     -> [X] Si réponse déjà présente, pré-remplir le formulaire
     -> [ ] Fonction collecte de réponses
