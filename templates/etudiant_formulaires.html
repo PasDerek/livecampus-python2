@@ -23,7 +23,7 @@
         <input type="range" id="progression" name="progression" min="0" max="100" value={% if reponse.progression %}"{{ reponse.progression }}"{% else %}"0"{% endif %} step="5" oninput="this.nextElementSibling.value = this.value + '%'">
         <output>{% if reponse.progression %}{{ reponse.progression }}{% else %}0{% endif %}%</output>
     </div>
-
+    <br/>
     <fieldset>
         <legend>Difficulté</legend>
         <input type="radio" id="difficulte1" name="difficulte" value="Facile" {% if 'Facile' in reponse.difficulte %}checked{% endif %}>
